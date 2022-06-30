@@ -35,6 +35,8 @@ process CONCAT_FILES {
     publishDir "${params.output}/${name}", mode: 'copy'
     tag "${name}"
 
+    conda (params.enable_conda ? "bioconda::bcftools=1.15.1" : null)
+
     input:
         tuple val(name), file(passed_snvs), file(passed_snvs_idx), file(passed_indels), file(passed_indels_idx)
 
