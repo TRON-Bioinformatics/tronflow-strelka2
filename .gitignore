@@ -1,0 +1,5 @@
+.idea
+venv
+work
+.nextflow*
+output
