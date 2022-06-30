@@ -8,7 +8,6 @@ include { MERGE_REPLICATES } from './modules/merge_replicates'
 params.help= false
 params.input_files = false
 params.reference = false
-params.intervals = false
 params.output = 'output'
 
 
