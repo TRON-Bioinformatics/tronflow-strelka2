@@ -5,7 +5,7 @@ process MERGE_REPLICATES {
     cpus 1
     memory '4g'
 
-    conda (params.enable_conda ? 'bioconda::samtools=1.15.1' : null)
+    conda (params.enable_conda ? 'conda-forge::libgcc-ng=10.3.0 conda-forge::gsl=2.7 bioconda::bcftools=1.15.1' : null)
 
     input:
     tuple val(name), val(tumor), val(normal)
