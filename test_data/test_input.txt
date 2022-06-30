@@ -1,0 +1,1 @@
+sample1	    tronflow-strelka2/test_data/TESTX_S1_L001.bam,    tronflow-strelka2/test_data/TESTX_S1_L001.bam	    tronflow-strelka2/test_data/TESTX_S1_L003.bam,    tronflow-strelka2/test_data/TESTX_S1_L003.bam

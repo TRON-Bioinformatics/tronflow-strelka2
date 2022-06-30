@@ -1,0 +1,39 @@
+
+
+process MERGE_REPLICATES {
+    tag "$name"
+    label 'process_low'
+
+    conda (params.enable_conda ? 'bioconda::samtools=1.15.1' : null)
+
+    input:
+    tuple val(name), val(tumor), val(normal)
+
+    output:
+    tuple val(name), path("${name}.tumor.bam"), path("${name}.tumor.bam.bai"),
+        path("${name}.normal.bam"), path("${name}.normal.bam.bai"), emit: merged_bams
+
+    script:
+    if (tumor.contains(',')) {
+        tumor_inputs = tumor.split(",").join(" ")
+        tumor_merge_cmd = "samtools merge ${name}.tumor.bam ${tumor_inputs}"
+    }
+    else {
+        tumor_merge_cmd = "cp ${tumor} ${name}.tumor.bam"
+    }
+
+    if (normal.contains(',')) {
+        normal_inputs = normal.split(",").join(" ")
+        normal_merge_cmd = "samtools merge ${name}.normal.bam ${normal_inputs}"
+    }
+    else {
+        normal_merge_cmd = "cp ${normal} ${name}.normal.bam"
+    }
+    """
+    ${tumor_merge_cmd}
+    samtools index ${name}.tumor.bam
+
+    ${normal_merge_cmd}
+    samtools index ${name}.normal.bam
+    """
+}
