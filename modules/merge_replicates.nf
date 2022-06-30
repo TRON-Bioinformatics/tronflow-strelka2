@@ -2,7 +2,8 @@
 
 process MERGE_REPLICATES {
     tag "$name"
-    label 'process_low'
+    cpus 1
+    memory '4g'
 
     conda (params.enable_conda ? 'bioconda::samtools=1.15.1' : null)
 
