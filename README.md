@@ -46,6 +46,8 @@ If replicates are provided, a conservative approach would be filter out variants
 A more relaxed approach would the opposite to keep them all. At the moment we just merge all reads in a single BAM, 
 thus we lose the advantage of having replicates apart from having greater coverage.
 
+The Strelka2 germline pipeline is not implemented.
+
 ## References
 
 - Di Tommaso, P., Chatzou, M., Floden, E. W., Barja, P. P., Palumbo, E., & Notredame, C. (2017). Nextflow enables reproducible computational workflows. Nature Biotechnology, 35(4), 316–319. https://doi.org/10.1038/nbt.3820

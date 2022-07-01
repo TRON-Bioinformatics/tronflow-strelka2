@@ -41,9 +41,10 @@ process CONCAT_FILES {
         tuple val(name), file(passed_snvs), file(passed_snvs_idx), file(passed_indels), file(passed_indels_idx)
 
     output:
-        tuple file("${name}.passed.somatic.vcf"), emit: passed_vcf
+        tuple file("${name}.strelka2.somatic.vcf.gz"), file("${name}.strelka2.somatic.vcf.gz.tbi"), emit: passed_vcf
 
     """
-    bcftools concat --allow-overlaps ${passed_indels} ${passed_snvs} > ${name}.passed.somatic.vcf
-  	"""
+    bcftools concat --allow-overlaps ${passed_indels} ${passed_snvs}  -O z > ${name}.strelka2.somatic.vcf.gz
+    tabix -p vcf ${name}.strelka2.somatic.vcf.gz
+    """
 }
