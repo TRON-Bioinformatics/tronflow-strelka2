@@ -20,7 +20,7 @@ process MERGE_REPLICATES {
         tumor_merge_cmd = "samtools merge ${name}.tumor.bam ${tumor_inputs}"
     }
     else {
-        tumor_merge_cmd = "cp ${tumor} ${name}.tumor.bam"
+        tumor_merge_cmd = "ln -s ${tumor} ${name}.tumor.bam"
     }
 
     if (normal.contains(',')) {
@@ -28,7 +28,7 @@ process MERGE_REPLICATES {
         normal_merge_cmd = "samtools merge ${name}.normal.bam ${normal_inputs}"
     }
     else {
-        normal_merge_cmd = "cp ${normal} ${name}.normal.bam"
+        normal_merge_cmd = "ln -s ${normal} ${name}.normal.bam"
     }
     """
     ${tumor_merge_cmd}
