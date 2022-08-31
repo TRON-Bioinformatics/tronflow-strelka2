@@ -15,13 +15,15 @@ process STRELKA2 {
               file("somatic.indels.vcf.gz.tbi"), emit: passed_vcfs
 
     script:
+    intervals_option = params.intervals ? "--exome --callRegions ${params.intervals}" : ""
+
     """
     configureStrelkaSomaticWorkflow.py \
     --tumorBam ${tumor_bam} \
     --normalBam ${normal_bam} \
     --referenceFasta ${params.reference} \
     --runDir ./output \
-    --exome
+    ${intervals_option}
 
     python2 ./output/runWorkflow.py -m local -j $task.cpus
 
