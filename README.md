@@ -22,7 +22,7 @@ Input:
     
 Optional input:
     * output: the folder where to publish output
-    * intervals: path to the BED file containing genomic intervals
+    * intervals: path to the BED file containing genomic intervals. Will assume WGS if not given
     * memory: the ammount of memory used by each job (default: 16g)
     * cpus: the number of CPUs used by each job (default: 2)
 
