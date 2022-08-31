@@ -25,7 +25,7 @@ if (!params.reference) {
     log.error "--reference is required"
     exit 1
 }
-if (! params.intervals) {
+if (!params.intervals) {
   log.info "--intervals option not given. Assuming WGS."
 }
 
