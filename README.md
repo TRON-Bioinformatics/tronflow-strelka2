@@ -1,5 +1,11 @@
 # TronFlow Strelka2
 
+![GitHub tag (latest SemVer)](https://img.shields.io/github/v/release/tron-bioinformatics/tronflow-strelka2?sort=semver)
+[![DOI](https://zenodo.org/badge/509191655.svg)](https://zenodo.org/badge/latestdoi/509191655)
+[![Run tests](https://github.com/TRON-Bioinformatics/tronflow-strelka2/actions/workflows/automated_tests.yml/badge.svg?branch=master)](https://github.com/TRON-Bioinformatics/tronflow-strelka2/actions/workflows/automated_tests.yml)
+[![License](https://img.shields.io/badge/license-MIT-green)](https://opensource.org/licenses/MIT)
+[![Powered by Nextflow](https://img.shields.io/badge/powered%20by-Nextflow-orange.svg?style=flat&colorA=E1523D&colorB=007D8A)](https://www.nextflow.io/)
+
 A nextflow (Di Tommaso, 2017) pipeline implementing the Strelka2 (Kim, 2017) pipeline for somatic variant calling of tumor-normal pairs.
 
 
