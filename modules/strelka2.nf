@@ -3,7 +3,7 @@ process STRELKA2 {
     memory "${params.memory}"
     tag "${name}"
 
-    conda (params.enable_conda ? 'conda-forge::python=2.7.15 bioconda::strelka=2.9.10' : null)
+    conda (params.enable_conda ? 'conda-forge::python=2.7.15 bioconda::strelka=2.9.10=h9ee0642_1' : null)
 
     input:
     tuple val(name), file(tumor_bam), file(tumor_bai), file(normal_bam), file(normal_bai)
