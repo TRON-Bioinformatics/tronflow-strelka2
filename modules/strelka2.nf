@@ -32,8 +32,8 @@ process STRELKA2 {
 }
 
 process CONCAT_FILES {
-    cpus 1
-    memory '4g'
+    cpus "${params.cpus}"
+    memory "${params.memory}"
     publishDir "${params.output}/${name}", mode: 'copy'
     tag "${name}"
 
