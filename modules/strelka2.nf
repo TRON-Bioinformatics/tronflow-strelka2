@@ -3,7 +3,7 @@ process STRELKA2 {
     memory "${params.memory}"
     tag "${name}"
 
-    conda (params.enable_conda ? 'conda-forge::python=2.7.15 bioconda::strelka=2.9.10=h9ee0642_1' : null)
+    conda (params.enable_conda ? "conda-forge::python=${params.python_version} bioconda::strelka=${params.strelka_version}" : null)
 
     input:
     tuple val(name), file(tumor_bam), file(tumor_bai), file(normal_bam), file(normal_bai)
@@ -37,7 +37,7 @@ process CONCAT_FILES {
     publishDir "${params.output}/${name}", mode: 'copy'
     tag "${name}"
 
-    conda (params.enable_conda ? "conda-forge::libgcc-ng=14.2.0 conda-forge::gsl=2.7 bioconda::bcftools=1.15.1" : null)
+    conda (params.enable_conda ? "bioconda::bcftools=${params.bcftools_version}" : null)
 
     input:
         tuple val(name), file(passed_snvs), file(passed_snvs_idx), file(passed_indels), file(passed_indels_idx)

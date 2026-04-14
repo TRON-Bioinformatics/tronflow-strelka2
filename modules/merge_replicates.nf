@@ -5,7 +5,7 @@ process MERGE_REPLICATES {
     cpus "${params.cpus}"
     memory "${params.memory}"
 
-    conda (params.enable_conda ? 'conda-forge::libgcc-ng=14.2.0 conda-forge::gsl=2.7 conda-forge::openssl=3.4.0 bioconda::samtools=1.21' : null)
+    conda (params.enable_conda ? "bioconda::sambamba=${params.sambamba_version}" : null)
 
     input:
     tuple val(name), val(tumor), val(normal)
@@ -17,7 +17,7 @@ process MERGE_REPLICATES {
     script:
     if (tumor.contains(',')) {
         tumor_inputs = tumor.split(",").join(" ")
-        tumor_merge_cmd = "samtools merge ${name}.tumor.bam ${tumor_inputs}"
+        tumor_merge_cmd = "sambamba merge -t ${task.cpus} ${name}.tumor.bam ${tumor_inputs}"
     }
     else {
         tumor_merge_cmd = "ln -s ${tumor} ${name}.tumor.bam"
@@ -25,16 +25,16 @@ process MERGE_REPLICATES {
 
     if (normal.contains(',')) {
         normal_inputs = normal.split(",").join(" ")
-        normal_merge_cmd = "samtools merge ${name}.normal.bam ${normal_inputs}"
+        normal_merge_cmd = "sambamba merge -t ${task.cpus} ${name}.normal.bam ${normal_inputs}"
     }
     else {
         normal_merge_cmd = "ln -s ${normal} ${name}.normal.bam"
     }
     """
     ${tumor_merge_cmd}
-    samtools index ${name}.tumor.bam
+    sambamba index ${name}.tumor.bam
 
     ${normal_merge_cmd}
-    samtools index ${name}.normal.bam
+    sambamba index ${name}.normal.bam
     """
 }
