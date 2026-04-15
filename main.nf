@@ -5,13 +5,6 @@ nextflow.enable.dsl = 2
 include { STRELKA2; CONCAT_FILES } from './modules/strelka2'
 include { MERGE_REPLICATES } from './modules/merge_replicates'
 
-params.help= false
-params.input_files = false
-params.reference = false
-params.intervals = false
-params.output = 'output'
-
-
 def helpMessage() {
     log.info params.help_message
 }
